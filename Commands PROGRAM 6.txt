@@ -1,0 +1,44 @@
+test1.c
+#include<stdio.h>
+int add(int a , int b)
+{
+return a+b;
+}
+int sub (int a , int b)
+{return a-b; 
+}
+test2.c
+#include<stdio.h>
+int mul(int a , int b)
+{
+return a*b;
+}
+float div (int a , int b)
+{return a/b; 
+}
+mylib.h
+int add(int , int);
+int sub(int , int);
+int mul(int , int);
+int div(int , int);
+Prog.c
+#include<stdio.h>
+#include "mylib.h"
+int main(){
+int a =9, b=3;
+printf("addition :%d \n",add(a,b));
+printf("subtraction :%d \n", sub(a,b));
+printf("multipilcation :%d \n ", mul(a,b));
+printf("division :%d \n", div(a, b));
+}
+OUTPUT
+// static lib
+// cc -c test1.c test2.c
+// ar -cvq static.a test1.o test2.o
+// cc prog.c static.a
+// ./a.out
+// dynamic
+// cc -fPIC -c test1.c test2.c
+// cc -shared -o libctest.so test1.o test2.o
+// cc -L . prog.c -l ctest -o dynamic
+// ./dynamic
